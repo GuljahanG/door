@@ -26,8 +26,21 @@ ul{
     margin-right: 20px;
 }
 .door{
-    background-color:thistle;
+    border: 1px solid#0d0d0d;
+    background-color: #c38107;
     width: 250px;
-    height: 300px;
+    height: 400px;
     margin: 2px;
+    position: relative;
 }
+.hand{
+    background-color: #e5eaa5;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    position: absolute;
+    left: 20px;
+    top: 45%;
+
+}
+

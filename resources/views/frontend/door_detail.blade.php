@@ -2,9 +2,13 @@
 @section('content')
     <div class="container mt-5">
         <h2>Конфигуратор входной двери</h2>
-        <div class="d-flex">
+        <div class="row">
             <div class="col-md-6 d-flex">
-                <div class="door"> </div>
+                <div class="door">
+                    <div class="hand">
+                        
+                    </div>
+                </div>
                 <div class="door"> </div>
         </div>
         <div class="col-md-6">
