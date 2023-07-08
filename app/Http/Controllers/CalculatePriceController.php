@@ -78,8 +78,8 @@ class CalculatePriceController extends Controller
         $pdf = Pdf::loadView('pdf.invoice', compact('order'));
         $output = $pdf->output();//generate pdf check
 
-        $file_name = 'uploads/orders/'.time() . Str::random(5).'.pdf';
-        Storage::disk('public')->put($file_name, $output);
+        $file_name = 'orders/'.time() . Str::random(5).'.pdf';
+        Storage::disk('public_uploads')->put($file_name, $output);
         return $file_name;
     }
 }

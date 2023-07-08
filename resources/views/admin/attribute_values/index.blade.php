@@ -7,6 +7,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Attribute</th>
             <th scope="col">Title</th>
             <th scope="col">Color</th>
             <th scope="col">Price</th>
@@ -17,6 +18,7 @@
             @foreach ($attribute_values as $key=> $attribute_value)
                 <tr>
                     <th scope="row">{{$key+1}}</th>
+                    <td>{{$attribute_value->attribute->title}}</td>
                     <td>{{$attribute_value->title}}</td>
                     <td>{{$attribute_value->color}}</td>
                     <td>{{$attribute_value->price}}</td>
