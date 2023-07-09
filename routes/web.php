@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Admin\CoefficientController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Web\OrderController as ClientOrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,26 +23,29 @@ use App\Http\Controllers\Admin\OrderController;
 //auth
 Route::view('/login','auth.login');
 Route::post('login', [LoginController::class, 'login']);
+
 //web
 Route::view('/', 'frontend.door_detail');
-Route::post('calculate_price', [CalculatePriceController::class, 'calculate'])->name('calculate_price');
+Route::resource('client_orders', ClientOrderController::class);
+Route::post('change_color', [CalculatePriceController::class, 'change_color'])->name('change_color');
 
 Route::group(['middleware' => 'admin'], function () {
 
     Route::view('/dashboard','admin.dashboard')->name('dashboard');
     Route::get('logout', [LogoutController::class, 'logout']);
+
     //attributes
     Route::resource('attributes', AttributeController::class);
     Route::get('/attributes/destroy/{id}', [AttributeController::class, 'destroy'])->name('attributes.destroy');
+
     //attribute values
     Route::resource('attribute_values', AttributeValueController::class);
     Route::get('/attribute_values/destroy/{id}', [AttributeValueController::class, 'destroy'])->name('attribute_values.destroy');
+
     //coefficients
     Route::resource('coefficients', CoefficientController::class);
     Route::get('/coefficients/destroy/{id}', [CoefficientController::class, 'destroy'])->name('coefficients.destroy');
+
     //orders
     Route::resource('orders', OrderController::class);
-
 });
-
-

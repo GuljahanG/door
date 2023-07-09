@@ -10,7 +10,7 @@ class Attribute extends Model
 {
     use HasFactory;
     protected $table = 'attributes';
-    protected $fillable = ['title','multiple'];
+    protected $fillable = ['title', 'multiple', 'element'];
 
     public function attribute_values(): HasMany{
         return $this->hasMany(AttributeValue::class);

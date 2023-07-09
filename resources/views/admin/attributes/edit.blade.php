@@ -11,6 +11,12 @@
                         <input type="text" value="{{$attribute->title}}" name="title" class="form-control" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="element">Element</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{$attribute->element}}" name="element" class="form-control" required>
+                    </div>
+                </div>
                 <div class="form-check mt-2">
                     <label class="form-check-label" for="flexCheckChecked"> Multiple </label>
                     <input class="form-check-input" type="checkbox" @if($attribute->multiple) checked @endif name="multiple">

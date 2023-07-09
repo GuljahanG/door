@@ -16,6 +16,7 @@
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$attribute->title}}</td>
+                        <td>{{$attribute->element}}</td>
                         <td>
                             <li class="d-flex">
                                 <ul><a href="{{route('attributes.edit', $attribute->id)}}" class="btn btn-primary mr-2"> Edit </a></ul>

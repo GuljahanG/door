@@ -2,114 +2,108 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    <meta http-equiv="Content-Type" content="text/html;"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta charset="UTF-8">
     <style media="all">
-
-        *{
-            margin: 0;
-            padding: 0;
-            line-height: 1.3;
-            font-family: 'Roboto';
-            color: #333542;
+        .paint-color{
+            border: 1px solid#0d0d0d;
+            height: 330px;
+            margin: 2px;
+            position: relative;
         }
-        .cf:before,
-        .cf:after {
-            content: " "; /* 1 */
-            display: table; /* 2 */
+        .door-color{
+            border: 1px solid#0d0d0d;
+            height: 330px;
+            left: 20px;
+            position: absolute;
+        }
+        .hand{
+            background-color: #e5eaa5;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            position: absolute;
+            left: 20px;
+            top: 45%;
+        }
+        table, td, th {
+            border: 1px solid black;
         }
 
-        .cf:after {
-            clear: both;
+        table {
+            border-collapse: collapse;
+            width: 100%;
         }
-
-        /**
-         * For IE 6/7 only
-         * Include this rule to trigger hasLayout and contain floats.
-         */
-        .cf {
-            *zoom: 1;
+        .table-no-border tr td th{
+            border : none;
         }
-        .wrapper{
-            width:100%;
-            margin-top:100px;
-            margin-left:40px;
-            margin-right:40px;
-            height:auto;
-            min-height:100px;
-            box-sizing: border-box;
+        td {
+            height: 50px;
+            vertical-align: middle;
+            text-align: center;
         }
-        .col-left,.col-right{
-            width:48%;
-            float:left;
-            min-height:100px;
-        }
-        .col-right{float:right;}
-        .one{border:1px solid #000;width:100%;display:flex}
-        .two{width:100%;}
-        .foo{border-top:1px solid #ddd;margin-top:20px;width:100%;}
-        .type{border-top:1px solid #ddd;width:100%;}
-
-        .oneone{border:1px solid #000;width:100%;display:flex}
-        .twotwo{width:100%;}
-        .foofoo{border-top:1px solid #ddd;margin-top:20px;width:100%;}
-        .typetype{border-top:1px solid #ddd;width:100%;}
-
-        .col-left div:last-child,.col-right div:last-child{border-bottom:none;}
-
-        .one p{float:right;}
-        .type table{ float:right;}
-        .type th{ text-align:right}
-
-
-        .oneone p{float:right;}
-        .typetype table{ float:right;}
-        .typetype th{ text-align:left}
-
     </style>
 </head>
 <body>
-
-<div class='wrapper cf'>
-
-    <div class='col-right'>
-
-        <div class='twotwo'>
-            <p>Код: {{ $order->code ?? '-'}}</p>
+    <div>
+        <div style="width:38%; float: left">
+            <div class="paint-color" style="width:48%; float:left">
+                <div class="door-color" style="width: 94%; margin:auto">
+                    <div class="hand">
+                    </div>
+                </div>
+            </div>
+            <div class="paint-color" style="width:48%; float:right">
+                <div class="door-color" style="width: 94%; margin:auto; left:0px">
+                    <div class="hand" style="margin-right:20px; float:right">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class='foofoo'>
-            <table style="text-align:left">
-                <thead>
-                    <tr>
-                        <th >Параметры</th>
-                        <th >Параметры</th>
-                        <th >Цена</th>
-                    </tr>
-                </thead>
-                <tbody class="strong">
-                    @foreach ($order->order_attributes as $key => $attribute)
-                        <tr class="">
-                            <td>{{ $attribute->attribute->title }}:  </td>
-                            <td >{{ $attribute->attribute_value->title }}</td>
-                            <td >{{ $attribute->attribute_value->price }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div style="margin-top:20px;padding-top:20px;margin-right:50px">
+        <div style="width:40%; margin-left: 10px; float:left">
+            <div>
+                <p>Код: {{ $order->code ?? '-'}}</p>
+            </div>
             <div>
                 <table>
-                    <tbody>
-                    <tr>
-                        <th>Total: </th>
-                        <td class="currency">{{number_format($order->total) }}</td>
-                    </tr>
+                    <thead>
+                        <tr style="100%">
+                            <th style="33%">Параметры</th>
+                            <th style="33%">Параметры</th>
+                            <th style="33%">Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody class="strong">
+                        @foreach ($order->order_attributes as $attribute)
+                        @if($attribute->attribute->element)
+                            <style>
+                                .{{$attribute->attribute->element}}{
+                                    background-color: {{$attribute->attribute_value->color_code}}
+                                }
+                            </style>
+                        @endif
+                            <tr style="100%">
+                                <td style="33%">{{ $attribute->attribute->title }}: </td>
+                                <td style="33%">{{ $attribute->attribute_value->title }} </td>
+                                <td style="33%">{{ $attribute->attribute_value->price }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            <div style="margin-top:20px;padding-top:20px;margin-right:50px">
+                <div>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Total: </th>
+                            <td class="currency">{{number_format($order->total) }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
